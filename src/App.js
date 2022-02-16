@@ -1,14 +1,14 @@
 // import logo from './logo.svg';
 import React from 'react'
 import './App.css';
-import Board from './components/Board';
-import Game from './components/Game';
 import Square from './components/Square';
 
 function App() {
+  var size = 5
   return (
     <div className="App">
-      <Square/>
+      
+      <Square size = {size}/>
     </div>
   );
 }

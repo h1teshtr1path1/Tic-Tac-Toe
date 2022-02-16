@@ -1,18 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import Square from './Square.css'
 
-const n = 3
-let rowX = [0, 0, 0], colX = [0, 0, 0] , dX = 0 , aX = 0
-let rowO = [0, 0, 0], colO = [0, 0, 0] , dO = 0 , aO = 0
+let rowX = [], colX = [] , dX = 0 , aX = 0
+let rowO = [], colO = [] , dO = 0 , aO = 0
 
 const Game = (props)=> {
+    
+    const n = props.size
+    function initialise(){
+        for(let i = 0;i<n;i++){
+            rowO.push(0)
+            colO.push(0)
+            rowX.push(0)
+            colX.push(0)
+        }
+    }
+    initialise();
     const [Ans, setAns] = useState("")
     useEffect(()=>{
         UpdateCheck()
         // console.log(props.Index)
     }, [props.Index])
-
     
+
     
     function UpdateCheck(){
         // console.log(props.Count)
@@ -34,6 +44,7 @@ const Game = (props)=> {
     }
 
     function Refresh(){
+        
         window.location.reload(false);
     }
   return (

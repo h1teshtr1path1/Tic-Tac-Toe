@@ -2,10 +2,14 @@ import React , {useState} from 'react'
 import style from './Square.css'
 import Game from './Game'
 
+
+
 const Square = (props)=> {
+    const size = props.size
     const [count, setCount] = useState(0)
     let [value, setValue] = useState([])
     let [index, setIndex] = useState(-1)
+    // const [cell, setCell] = useState([])
     function toggle() {
         if(count%2 ===0)
         return 'X';
@@ -22,38 +26,23 @@ const Square = (props)=> {
         }
         else alert("Invalid Move")
     }
+
+    //array for each cell in board of tic tac toe
+    var cell = []
+    function initialise(){
+        for(let i = 0;i<size*size;i++){
+            cell.push(<button key={i} className='row' onClick={()=>{
+                Update(i+1);
+            }}>{value[i]}</button>)
+        }
+    }
+    initialise();
   return (
     <div>
         <div className='Box'>
-            <button className='row' onClick= {()=>{
-                Update(1);
-            }}>{value[0]}</button>
-            <button className='row' onClick= {()=>{
-                Update(2);
-            }}>{value[1]}</button>
-            <button className='row' onClick= {()=>{
-                Update(3);
-            }}>{value[2]}</button>
-            <button className='row' onClick= {()=>{
-                Update(4);
-            }}>{value[3]}</button>
-            <button className='row' onClick= {()=>{
-                Update(5);
-            }}>{value[4]}</button>
-            <button className='row' onClick= {()=>{
-                Update(6);
-            }}>{value[5]}</button>
-            <button className='row' onClick= {()=>{
-                Update(7);
-            }}>{value[6]}</button>
-            <button className='row' onClick= {()=>{
-                Update(8);
-            }}>{value[7]}</button>
-            <button className='row' onClick= {()=>{
-                Update(9);
-            }}>{value[8]}</button>
+            {cell}
         </div>
-        <Game Index = {index-1} Count = {count}/>
+        <Game Index = {index-1} Count = {count} size = {size}/>
     </div>
   )
 }
